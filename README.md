@@ -1,9 +1,16 @@
 # Nucleares.js
 API Wrapper for the Nucleares game.
 
+## Requirements
+
+- Modern Node.js version supporting native fetch (tested on v19.1.0)
+- Nucleares Web Server running, tested on v0.2.11.106
+
 ## Usage
 
 The API supports all [currently published](https://nuclearesgame.blogspot.com/2023/11/webserver.html) variables for the Nucleares API.
+
+If unspecified, connects to the default listener for the game on `localhost`, port `8080`.
 
 Example:
 
@@ -11,7 +18,7 @@ Example:
 
 const { Sensors, NuclearesAPI } = require("./nucleares.js");
 
-const api = new NuclearesAPI();
+const api = new NuclearesAPI("localhost", 8080); // optional parameters
 
 (async () => {
     const core_temp = await api.getData(Sensors.CORE_TEMP);

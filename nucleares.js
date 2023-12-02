@@ -63,11 +63,13 @@ const PumpDryStatus = ["Active without fluid", "Inactive or active with fluid"];
 const PumpOverloadStatus = ["Active and overload", "Inactive or active no overload"];
 
 class NuclearesAPI {
-    constructor() {
+    constructor(host = "localhost", port = 8080) {
         this.PumpDryStatus = PumpDryStatus;
         this.PumpOverloadStatus = PumpOverloadStatus;
         this.PumpStatus = PumpStatus;
         this.Sensors = Sensors;
+        this.host = host;
+        this.port = port;
     }
 
     /**
@@ -75,7 +77,7 @@ class NuclearesAPI {
      * @param {Sensors} name 
      */
     async getData(name) {
-        return await fetch(`http://localhost:8080/?Variable=${name}`).then(async (response) => {
+        return await fetch(`http://${this.host}:${this.port}/?Variable=${name}`).then(async (response) => {
             const data = await response.text();
             const returnData = { value: data, value_str: null, errors: null };
             if (name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_0_STATUS || name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_1_STATUS || name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_2_STATUS) {

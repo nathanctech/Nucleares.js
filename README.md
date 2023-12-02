@@ -24,7 +24,8 @@ Returns object:
 ```js
 {
     value, // the actual value
-    value_str // some variables resolve to a particular status, such as pump statuses
+    value_str, // some variables resolve to a particular status, such as pump statuses
+    errors // returns error object if some problem was encountered (such as game not running), null on success.
 }
 ```
 

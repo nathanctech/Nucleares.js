@@ -64,7 +64,6 @@ const PumpOverloadStatus = ["Active and overload", "Inactive or active no overlo
 
 class NuclearesAPI {
     constructor() {
-        const func = async (name) => { return await this.getData(name); };
         this.PumpDryStatus = PumpDryStatus;
         this.PumpOverloadStatus = PumpOverloadStatus;
         this.PumpStatus = PumpStatus;
@@ -76,9 +75,9 @@ class NuclearesAPI {
      * @param {Sensors} name 
      */
     async getData(name) {
-        await fetch(`http://localhost:8080/?Variable=${name}`).then(async (response) => {
+        return await fetch(`http://localhost:8080/?Variable=${name}`).then(async (response) => {
             const data = await response.text();
-            const returnData = { value: data, value_str: null };
+            const returnData = { value: data, value_str: null, errors: null };
             if (name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_0_STATUS || name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_1_STATUS || name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_2_STATUS) {
                 returnData.value_str = PumpStatus[data];
             } else if (name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_0_DRY_STATUS || name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_1_DRY_STATUS || name == Sensors.COOLANT_CORE_CIRCULATION_PUMP_2_DRY_STATUS) {
@@ -89,7 +88,7 @@ class NuclearesAPI {
             return returnData;
         }).catch((err) => {
             console.log(err);
-            return null;
+            return { value: null, value_str: null, errors: err };
         });
     }
 }

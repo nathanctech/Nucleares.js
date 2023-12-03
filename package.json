@@ -1,11 +1,11 @@
 {
   "name": "nucleares.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "API Wrapper for Nucleares",
   "main": "nucleares.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "nathanctech",
+  "license": "MIT"
 }

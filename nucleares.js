@@ -59,8 +59,8 @@ const Sensors = {
 }
 
 const PumpStatus = ["Inactive", "Active, no speed reached", "Active, speed reached", "Requires Maintenance", "Not installed", "Insufficient energy"];
-const PumpDryStatus = ["Active without fluid", "Inactive or active with fluid"];
-const PumpOverloadStatus = ["Active and overload", "Inactive or active no overload"];
+const PumpDryStatus = ["0", "Active without fluid", "2", "3", "Inactive or active with fluid"];
+const PumpOverloadStatus = ["0", "Active and overload", "2", "3", "Inactive or active no overload"];
 
 class NuclearesAPI {
     constructor(host = "localhost", port = 8080) {
